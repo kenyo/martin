@@ -6,8 +6,8 @@
   "author": "kenny oh <kennyoh517@gmail.com>",
   "license": "MIT",
   "dependencies": {
-    "express": "^4.17.1",
-    "password-generator": "^2.3.2"
+    "axios": "^0.19.2",
+    "express": "^4.17.1"
   },
   "scripts": {
     "start": "node index.js",
