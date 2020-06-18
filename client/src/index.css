@@ -15,3 +15,8 @@ code {
 .delivery-form {
   margin: 50px;
 }
+
+p {
+  display:inline;
+  word-wrap: break-word;
+}

@@ -1,27 +1,52 @@
 import React, { useState } from 'react'
+
 const find = require('lodash/find')
+const findIndex = require('lodash/findIndex')
 
 export default class Inventory extends React.Component {
 
   constructor(props) {
     super(props)
 
-    const selection = props.inventory.map(x => ({
+     const selections = props.inventory.map(x => ({
       id: x.id,
       name: x.name,
-      count: 1,
+      count: 0,
     }))
 
     this.state = {
-      selection,
+      selections,
     }
   }
 
+  updateCount = (id, change) => {
+    let item = find(this.state.selections, x => x.id === id)
+
+    if (change === 'increment') {
+      item.count++
+    } else if (change === 'decrement') {
+      item.count--
+    }
+
+    const itemIndex = findIndex(this.state.selections, x => x.id === item.id)
+    // overwrite item at index with new count
+    this.state.selections[itemIndex] = item
+
+    this.setState(this.state.selections);
+  }
+
   render() {
-    const items = this.state.selection
-      .map(x => <p key={x.id} onClick={() => this.props.addItemHandler(x.id) } >
-        {x.name}
-        </p>)
+
+    const items = this.state.selections
+      .map(x =>
+      <div key={x.id}>
+        <p onClick={() => this.updateCount(x.id, 'decrement')}> 🔽 </p>
+        <p onClick={() => this.props.addItemHandler(x.id, x.count)}>
+          {`${x.name} ${x.count}`}
+        </p>
+        <p onClick={() => this.updateCount(x.id, 'increment')}> 🔼 </p>
+      </div>
+    )
 
     return (
       <>

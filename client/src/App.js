@@ -29,8 +29,8 @@ export default class App extends React.Component {
     }
   }
 
-  addItemHandler = e => {
-    console.log(e)
+  addItemHandler = (id, count) => {
+    console.log(id, count)
   }
 
   render() {
