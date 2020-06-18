@@ -39,7 +39,7 @@ export default class App extends React.Component {
     return (
       <div className='App'>
         <ShoppingCart cart={this.state.cart}/>
-        <Badge pill variant='danger'>{this.state.cart.length}</Badge>
+        <Badge pill variant='danger'>{this.state.cart.reduce((acc, cur) => acc + cur.count, 0)}</Badge>
 
         <Inventory addItemHandler={this.addItemHandler} inventory={sampleInventory}/>
       </div>
