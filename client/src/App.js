@@ -1,6 +1,6 @@
 import React from 'react'
 
-import Delivery from './components/Delivery'
+import Checkout from './components/Checkout'
 import Inventory from './components/Inventory'
 import ShoppingCart from './components/ShoppingCart'
 
