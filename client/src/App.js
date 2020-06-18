@@ -32,9 +32,9 @@ export default class App extends React.Component {
     }
   }
 
-  componentDidMount() {
+  componentWillMount() {
     axios.get('/api/inventory')
-      .then(({data}) => this.setState({inventory: data}))
+      .then(({data}) => this.setState((state, props) => ({inventory : data})))
   }
 
   addItemHandler = selections => {
@@ -52,7 +52,7 @@ export default class App extends React.Component {
             <ShoppingCartIcon />
           </Badge>
         </IconButton>
-        <Inventory addItemHandler={this.addItemHandler} inventory={sampleInventory}/>
+        <Inventory addItemHandler={this.addItemHandler} inventory={sampleInventory} foo={this.state.inventory}/>
       </div>
     )
   }

@@ -8,7 +8,7 @@ export default class Inventory extends React.Component {
   constructor(props) {
     super(props)
 
-     const selections = props.inventory.map(x => ({
+    const selections = props.inventory.map(x => ({
       id: x.id,
       name: x.name,
       count: 0,
@@ -49,7 +49,7 @@ export default class Inventory extends React.Component {
       <>
         <p>inventory</p>
         {items}
-        <button onClick={() => this.props.addItemHandler(this.state.selections)}>Add to cart</button>
+        <button onClick={() => this.props.addToCart(this.state.selections)}>Add to cart</button>
       </>
     )
   }
