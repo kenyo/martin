@@ -3,8 +3,10 @@ import React from 'react'
 import Checkout from './components/Checkout'
 import Inventory from './components/Inventory'
 import ShoppingCart from './components/ShoppingCart'
+import { IconButton, Badge } from '@material-ui/core'
+import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
 
-import Badge from 'react-bootstrap/Badge'
+const axios = require('axios')
 
 // xxx: make api call of all items with quantity > 0
 const sampleInventory = [
@@ -25,8 +27,14 @@ export default class App extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-      cart: []
+      inventory: [],
+      cart: [],
     }
+  }
+
+  componentDidMount() {
+    axios.get('/api/inventory')
+      .then(({data}) => this.setState({inventory: data}))
   }
 
   addItemHandler = selections => {
@@ -39,8 +47,11 @@ export default class App extends React.Component {
     return (
       <div className='App'>
         <ShoppingCart cart={this.state.cart}/>
-        <Badge pill variant='danger'>{this.state.cart.reduce((acc, cur) => acc + cur.count, 0)}</Badge>
-
+        <IconButton aria-label="cart">
+          <Badge badgeContent={this.state.cart.reduce((acc, cur) => acc + cur.count, 0)} color="secondary">
+            <ShoppingCartIcon />
+          </Badge>
+        </IconButton>
         <Inventory addItemHandler={this.addItemHandler} inventory={sampleInventory}/>
       </div>
     )
