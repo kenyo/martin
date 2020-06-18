@@ -29,8 +29,10 @@ export default class App extends React.Component {
     }
   }
 
-  addItemHandler = (id, count) => {
-    console.log(id, count)
+  addItemHandler = selections => {
+    const cart = selections.filter(x => x.count > 0)
+
+    this.setState({cart})
   }
 
   render() {

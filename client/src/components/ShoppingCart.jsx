@@ -2,6 +2,6 @@ import React from 'react'
 
 export default function ShoppingCart(props) {
   return (
-    <p>asdf</p>
+    props.cart.map(x => <div key={x.id}>{x.name}</div>)
   )
 }

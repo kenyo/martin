@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React from 'react'
 
 const find = require('lodash/find')
 const findIndex = require('lodash/findIndex')
@@ -37,13 +37,10 @@ export default class Inventory extends React.Component {
 
   render() {
 
-    const items = this.state.selections
-      .map(x =>
+    const items = this.state.selections.map(x =>
       <div key={x.id}>
         <p onClick={() => this.updateCount(x.id, 'decrement')}> 🔽 </p>
-        <p onClick={() => this.props.addItemHandler(x.id, x.count)}>
-          {`${x.name} ${x.count}`}
-        </p>
+        <p>{`${x.name} ${x.count}`}</p>
         <p onClick={() => this.updateCount(x.id, 'increment')}> 🔼 </p>
       </div>
     )
@@ -52,7 +49,7 @@ export default class Inventory extends React.Component {
       <>
         <p>inventory</p>
         {items}
-        <button onClick={this.props.addItemHandler}>click me</button>
+        <button onClick={() => this.props.addItemHandler(this.state.selections)}>Add to cart</button>
       </>
     )
   }
