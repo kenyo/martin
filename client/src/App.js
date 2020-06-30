@@ -70,7 +70,7 @@ export default class App extends React.Component {
             <ShoppingCartIcon />
           </Badge>
         </IconButton>
-        <p>inventoary</p>
+        <p>inventory</p>
         {items}
 
         <button onClick={() => this.addToCart(this.state.inventory)}>Add to cart</button>
