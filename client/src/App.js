@@ -32,12 +32,12 @@ export default class App extends React.Component {
     }
   }
 
-  componentWillMount() {
+  componentDidMount() {
     axios.get('/api/inventory')
       .then(({data}) => this.setState((state, props) => ({inventory : data})))
   }
 
-  addItemHandler = selections => {
+  addToCart = selections => {
     const cart = selections.filter(x => x.count > 0)
 
     this.setState({cart})
@@ -52,7 +52,7 @@ export default class App extends React.Component {
             <ShoppingCartIcon />
           </Badge>
         </IconButton>
-        <Inventory addItemHandler={this.addItemHandler} inventory={sampleInventory} foo={this.state.inventory}/>
+        <Inventory addToCart={this.addToCart} inventory={this.state.inventory} />
       </div>
     )
   }
