@@ -22,7 +22,6 @@ export default class App extends React.Component {
   }
 
   componentDidMount() {
-    // xxx: make api call of all items with quantity > 0
     axios.get('/api/inventory')
       .then(({data}) => {
         const inventory = data.map(x => assign({}, x, {selectionCount: 0}))
