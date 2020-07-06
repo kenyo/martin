@@ -46,10 +46,11 @@ export default class App extends React.Component {
     }
 
     const itemIndex = findIndex(this.state.inventory, x => x.id === item.id)
+    const inventory = this.state.inventory
     // overwrite item at index with new count
-    this.state.inventory[itemIndex] = item
+    inventory[itemIndex] = item
 
-    this.setState(this.state.inventory);
+    this.setState((state, props) => ({ inventory }))
   }
 
   render() {
